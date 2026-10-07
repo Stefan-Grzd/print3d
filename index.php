@@ -50,7 +50,7 @@
 
     <div class="mt-5" id="content1">
         <div class="content-copy">
-            <h1>Ein Teil fehlt. <br>Deine Lösung beginnt hier.</h1>
+            <h1>Ein Teil fehlt. Deine Lösung beginnt <br> hier.</h1>
             <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner <br>
              3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil <br> direkt im Shop.</p>
         </div>

@@ -149,14 +149,14 @@ body {
 }
 
 #content1 .content-copy {
-    flex: 1 1 0;
+    flex: 1.35 1 0;
     min-width: 0;
 }
 
 #content1 h1 {
     font-weight: 700;
     font-size: 3.5rem;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
     line-height: 1.1;
     color: #ffffff;
     margin-left: 2rem;
@@ -166,15 +166,17 @@ body {
 #content1 p {
     font-weight: 400;
     font-size: 1rem;
+    letter-spacing: 0.015em;
     line-height: 1.5;
     color: #dfd7e7;
     margin-left: 2rem;
     margin-top:0;
+    width: calc(100% + 2rem);
 }
 
 #bspbild2 {
     display: block;
-    flex: 1 1 350px;
+    flex: 0.85 1 350px;
     width: min(100%, 650px);
     max-width: 100%;
     height: auto;
@@ -194,11 +196,20 @@ body {
 
     #content1 .content-copy {
         width: 100%;
+        max-width: none;
     }
 
     #content1 h1,
     #content1 p {
         margin-left: 0;
+    }
+
+    #content1 h1 {
+        width: calc(100% + 4rem);
+    }
+
+    #content1 p {
+        width: calc(100% + 2rem);
     }
 
     #bspbild2 {
@@ -228,10 +239,12 @@ body {
     }
 
     #content1 h1 {
+        width: 100%;
         font-size: clamp(2rem, 11vw, 2.75rem);
     }
 
     #content1 p {
+        width: 100%;
         font-size: 0.95rem;
     }
 

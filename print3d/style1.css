@@ -10,9 +10,9 @@ html {
 body {
     width: 100%;
     overflow-x: hidden;
-    min-height: 100vh;
+    min-height: 100vh; 
     margin: 0;
-    background: linear-gradient(135deg, #5b21b6 0%, #c026d3 100%);
+    background:linear-gradient(110deg, #5b21b6 0%, #c026d3 100%);
     font-family: "Inter", sans-serif;
     font-weight: 400;
     height: 250px;
@@ -762,7 +762,7 @@ body {
 }
 #leistungen-content2{
     width: 100%;
-    padding: 5rem 7rem;
+    padding: 3.5rem 7rem;
     background-color: #f3f5f7;
     font-family: "Inter", sans-serif;
 }
@@ -772,17 +772,41 @@ body {
     margin: 0;
 }
 
-#leistungen-content2 > .row > .col-md-6 {
+#leistungen-content2 > .row > [class*="col-"] {
+    min-width: 0;
+}
+
+#leistungen-content2 > .row > [class*="col-"]:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+#leistungen-content2 > .row > [class*="col-"] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 24rem);
+    align-items: start;
+    column-gap: 3rem;
+}
+
+#leistungen-content2 .material-intro {
+    grid-column: 1;
+    display: block;
     width: 100%;
 }
 
 #leistungen-content2 h2 {
+    display: block;
+    width: 100%;
     margin-bottom: 0.75rem;
     color: #17202d;
     font-weight: 700;
 }
 
-#leistungen-content2 > .row > .col-md-6 > p {
+#leistungen-content2 .material-intro p {
+    display: block;
+    width: 100%;
     max-width: 42rem;
     margin-bottom: 2rem;
     color: #707b8b;
@@ -790,7 +814,36 @@ body {
 }
 
 #leistungen-content2 .material-layout {
+    grid-column: 2;
     display: block;
+}
+
+#leistungen-content2 .material-animation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 34rem;
+    margin: 0 auto;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(192, 38, 211, 0.18), transparent 62%),
+        #ffffff;
+    border: 1px solid #e1e5eb;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2.5rem rgba(23, 32, 45, 0.12);
+}
+
+#leistungen-content2 .material-animation-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 34rem;
+    object-fit: contain;
+    transform: scale(1.08);
+    pointer-events: none;
+    user-select: none;
 }
 
 #leistungen-content2 .material-nav {
@@ -878,8 +931,8 @@ body {
 }
 
 #leistungen-content2 .material-popover.is-visible {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1 !important;
+    transform: translateX(0) !important;
 }
 
 #leistungen-content2 .material-popover h4 {
@@ -900,7 +953,26 @@ body {
         padding: 4rem 2rem;
     }
 
+    #leistungen-content2 > .row > [class*="col-"] {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    #leistungen-content2 .material-animation {
+        min-height: 22rem;
+        margin-top: 2rem;
+    }
+
+    #leistungen-content2 .material-animation-video {
+        min-height: 22rem;
+    }
+
     #leistungen-content2 .material-nav {
+        width: 100%;
+    }
+
+    #leistungen-content2 .material-layout {
         width: 100%;
     }
 

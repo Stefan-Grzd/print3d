@@ -51,11 +51,17 @@
     <div class="mt-5" id="content1">
         <div class="content-copy">
             <h1>Ein Teil fehlt. <br>Deine Lösung beginnt hier.</h1>
-            <br>
             <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner <br>
              3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil <br> direkt im Shop.</p>
         </div>
-         <img src="img/bspbild2.jpeg" alt="Beispielbild" class="img-fluid mt-4" id="bspbild2">
+         <dotlottie-player
+             src="3Ddruck.lottie"
+             autoplay
+             loop
+             aria-label="Animierte 3D-Darstellung"
+             class="img-fluid mt-4"
+             id="bspbild2">
+         </dotlottie-player>
     </div>
 
     <div id="content2">
@@ -220,6 +226,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
   </body>
 </body>
 </html>

@@ -15,7 +15,7 @@ body {
     background:linear-gradient(110deg, #5b21b6 0%, #c026d3 100%);
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    height: 250px;
+   
 }
 
 /* Navbar */
@@ -160,6 +160,7 @@ body {
     line-height: 1.1;
     color: #ffffff;
     margin-left: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 #content1 p {
@@ -168,6 +169,7 @@ body {
     line-height: 1.5;
     color: #dfd7e7;
     margin-left: 2rem;
+    margin-top:0;
 }
 
 #bspbild2 {
@@ -178,7 +180,7 @@ body {
     height: auto;
     aspect-ratio: 13 / 10;
     object-fit: cover;
-    margin: 0 0 1rem;
+    margin: -1rem 0 1rem;
     border-radius: 10px;
 }
 
@@ -203,6 +205,7 @@ body {
         width: 100%;
         height: auto;
         max-width: 500px;
+        margin-top: 0;
     }
 }
 

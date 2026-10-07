@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh; 
     margin: 0;
-    background:linear-gradient(110deg, #89888a 0%, #c026d3 100%);
+    background:linear-gradient(110deg, #5b21b6 0%, #c026d3 100%);
     font-family: "Inter", sans-serif;
     font-weight: 400;
     height: 250px;

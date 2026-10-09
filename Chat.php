@@ -24,16 +24,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-pills justify-content-center w-100">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#startseite">Startseite</a>
+                                <a class="nav-link" href="#startseite">Startseite</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="leistungen.php">Leistungen</a>
+                                <a class="nav-link" href="#leistungen">Leistungen</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#shop">Shop</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#kontakt">Kontakt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#chat ">Chat</a>
                             </li>
                         </ul>
                     </div>

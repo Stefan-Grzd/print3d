@@ -35,6 +35,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#kontakt">Kontakt</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#chat">Chat</a>
+</li>
                         </ul>
                     </div>
                     <div class="nav-actions">
@@ -50,7 +53,7 @@
 
     <div class="mt-5" id="content1">
         <div class="content-copy">
-            <h1>Ein Teil fehlt. Deine Lösung beginnt <br> hier.</h1>
+            <h1>Ein Teil fehlt? Deine Lösung <br> beginnt hier.</h1>
             <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner <br>
              3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil <br> direkt im Shop.</p>
         </div>

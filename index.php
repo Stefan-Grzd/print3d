@@ -24,16 +24,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-pills justify-content-center w-100">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#startseite">Startseite</a>
+                                <a class="nav-link active" aria-current="page" href="index.php">Startseite</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="leistungen.php">Leistungen</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#shop">Shop</a>
+                                <a class="nav-link" href="shop.php">Shop</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#kontakt">Kontakt</a>
+                                <a class="nav-link" href="kontakt.php">Kontakt</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="chat.php">Chat</a>
@@ -44,9 +44,7 @@
                         <a class="nav-action-link" href="#warenkorb" aria-label="Warenkorb" title="Warenkorb">
                             <i class="bi bi-cart3" aria-hidden="true"></i>
                         </a>
-                        <a class="nav-action-link" href="#account" aria-label="Mein Account" title="Mein Account">
-                            <i class="bi bi-person-circle" aria-hidden="true"></i>
-                        </a>
+                        <a class="nav-link nav-login-link active" aria-current="page" href="login.php">Login</a>
                     </div>
         </div>
     </nav>

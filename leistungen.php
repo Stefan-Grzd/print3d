@@ -24,7 +24,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-pills justify-content-center w-100">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php#startseite">Startseite</a>
+                                <a class="nav-link" href="index.php">Startseite</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="leistungen.php">Leistungen</a>
@@ -41,12 +41,12 @@
                         </ul>
                     </div>
                     <div class="nav-actions">
-                        <a class="nav-action-link" href="#warenkorb" aria-label="Warenkorb" title="Warenkorb">
+                        <a class="nav-action-link" href="warenkorb.php" aria-label="Warenkorb" title="Warenkorb">
                             <i class="bi bi-cart3" aria-hidden="true"></i>
                         </a>
-                        <a class="nav-action-link" href="#account" aria-label="Mein Account" title="Mein Account">
-                            <i class="bi bi-person-circle" aria-hidden="true"></i>
-                        </a>
+                       <li class="nav-item">
+                                <a class="nav-link" href="login.php">Login/Register</a>
+                        </li>
                     </div>
         </div>
     </nav>

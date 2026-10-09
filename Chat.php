@@ -9,220 +9,516 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style1.css">
-    <title>Print3d</title>
+    <title>Chat | Print3d</title>
+    <style>
+        .chat-page {
+            width: min(1180px, calc(100% - 2rem));
+            height: 680px;
+            min-height: 680px;
+            margin: 3rem auto 5rem;
+            display: grid;
+            grid-template-columns: 320px minmax(0, 1fr);
+            grid-template-rows: minmax(0, 1fr);
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 1.25rem;
+            box-shadow: 0 1.5rem 3rem rgba(47, 18, 82, 0.2);
+        }
+
+        .chat-sidebar {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: 0;
+            background: #fafafa;
+            border-right: 1px solid #ececf0;
+        }
+
+        .chat-sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 1.25rem 1rem;
+        }
+
+        .chat-sidebar-header h1 {
+            margin: 0;
+            color: #20202a;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .chat-icon-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            color: #5b21b6;
+            background: transparent;
+            border: 0;
+            border-radius: 50%;
+            font-size: 1.25rem;
+        }
+
+        .chat-icon-button:hover,
+        .chat-icon-button:focus-visible {
+            color: #ffffff;
+            background: #d946ef;
+        }
+
+        .chat-search {
+            margin: 0 1.25rem 1rem;
+            position: relative;
+        }
+
+        .chat-search i {
+            position: absolute;
+            top: 0.7rem;
+            left: 0.8rem;
+            color: #858594;
+        }
+
+        .chat-search input {
+            width: 100%;
+            padding: 0.65rem 0.75rem 0.65rem 2.25rem;
+            color: #292936;
+            background: #f0f0f3;
+            border: 1px solid transparent;
+            border-radius: 1.25rem;
+            outline: 0;
+        }
+
+        .chat-search input:focus {
+            border-color: #c026d3;
+            background: #ffffff;
+        }
+
+        .chat-tabs {
+            display: flex;
+            gap: 1.25rem;
+            padding: 0 1.25rem;
+            border-bottom: 1px solid #ececf0;
+        }
+
+        .chat-tab {
+            padding: 0.75rem 0 0.65rem;
+            color: #858594;
+            background: transparent;
+            border: 0;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+        }
+
+        .chat-tab.active {
+            color: #5b21b6;
+            border-bottom-color: #c026d3;
+        }
+
+        .chat-list {
+            padding: 0.5rem;
+            min-height: 0;
+            overflow-y: auto;
+        }
+
+        .chat-contact {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 0.75rem;
+            padding: 0.8rem;
+            color: #252532;
+            text-align: left;
+            background: transparent;
+            border: 0;
+            border-radius: 0.75rem;
+        }
+
+        .chat-contact:hover,
+        .chat-contact.active {
+            background: #f0e8fa;
+        }
+
+        .chat-avatar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 2.8rem;
+            width: 2.8rem;
+            height: 2.8rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #5b21b6, #d946ef);
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
+        .chat-contact-copy {
+            min-width: 0;
+        }
+
+        .chat-contact-copy strong,
+        .chat-contact-copy span {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .chat-contact-copy strong {
+            font-size: 0.9rem;
+        }
+
+        .chat-contact-copy span {
+            margin-top: 0.2rem;
+            color: #858594;
+            font-size: 0.75rem;
+        }
+
+        .chat-main {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: 0;
+            background: #ffffff;
+        }
+
+        .chat-main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 76px;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #ececf0;
+        }
+
+        .chat-main-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chat-main-user strong {
+            display: block;
+            color: #20202a;
+        }
+
+        .chat-main-user span {
+            display: block;
+            margin-top: 0.15rem;
+            color: #32a852;
+            font-size: 0.75rem;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 0.75rem;
+            min-height: 0;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #ffffff 0%, #fcf9ff 100%);
+        }
+
+        .chat-date {
+            align-self: center;
+            margin-bottom: 0.75rem;
+            color: #9999a5;
+            font-size: 0.75rem;
+        }
+
+        .chat-bubble {
+            max-width: min(75%, 30rem);
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #5b21b6, #c026d3);
+            border-radius: 1rem 1rem 1rem 0.2rem;
+            line-height: 1.45;
+        }
+
+        .chat-bubble.own {
+            align-self: flex-end;
+            color: #30203b;
+            background: #f0e8fa;
+            border-radius: 1rem 1rem 0.2rem 1rem;
+        }
+
+        .chat-time {
+            display: block;
+            margin-top: 0.3rem;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.68rem;
+            text-align: right;
+        }
+
+        .chat-bubble.own .chat-time {
+            color: #8f76a2;
+        }
+
+        .chat-composer {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem 1.25rem;
+            border-top: 1px solid #ececf0;
+        }
+
+        .chat-composer input {
+            min-width: 0;
+            flex: 1;
+            padding: 0.75rem 1rem;
+            color: #292936;
+            background: #f5f5f7;
+            border: 1px solid transparent;
+            border-radius: 1.4rem;
+            outline: 0;
+        }
+
+        .chat-composer input:focus {
+            border-color: #c026d3;
+            background: #ffffff;
+        }
+
+        .chat-send {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            color: #ffffff;
+            background: #5b21b6;
+            border: 0;
+            border-radius: 50%;
+        }
+
+        .chat-send:hover,
+        .chat-send:focus-visible {
+            background: #d946ef;
+        }
+
+        @media (max-width: 700px) {
+            .chat-page {
+                width: calc(100% - 1rem);
+                height: 620px;
+                min-height: 620px;
+                margin: 1rem auto 2rem;
+                grid-template-columns: 1fr;
+                grid-template-rows: 300px minmax(0, 1fr);
+            }
+
+            .chat-sidebar {
+                min-height: 0;
+                max-height: 300px;
+                border-right: 0;
+                border-bottom: 1px solid #ececf0;
+            }
+
+            .chat-main-header {
+                min-height: 68px;
+                padding: 0.75rem 1rem;
+            }
+
+            .chat-messages {
+                padding: 1.25rem 1rem;
+            }
+
+            .chat-composer {
+                padding: 0.75rem 1rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#startseite" id="logo">
-             <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
-  
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="index.php#startseite" id="logo">
+                <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navigation öffnen">
                 <span class="navbar-toggler-icon"></span>
-                </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav nav-pills justify-content-center w-100">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#startseite">Startseite</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#leistungen">Leistungen</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#shop">Shop</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#kontakt">Kontakt</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#chat ">Chat</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nav-actions">
-                        <a class="nav-action-link" href="#warenkorb" aria-label="Warenkorb" title="Warenkorb">
-                            <i class="bi bi-cart3" aria-hidden="true"></i>
-                        </a>
-                        <a class="nav-action-link" href="#account" aria-label="Mein Account" title="Mein Account">
-                            <i class="bi bi-person-circle" aria-hidden="true"></i>
-                        </a>
-                    </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav nav-pills justify-content-center w-100">
+                    <li class="nav-item"><a class="nav-link" href="index.php#startseite">Startseite</a></li>
+                    <li class="nav-item"><a class="nav-link" href="leistungen.php">Leistungen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php#shop">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php#kontakt">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Chat.php">Chat</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <a class="nav-action-link" href="#warenkorb" aria-label="Warenkorb" title="Warenkorb"><i class="bi bi-cart3" aria-hidden="true"></i></a>
+                <a class="nav-action-link" href="#account" aria-label="Mein Account" title="Mein Account"><i class="bi bi-person-circle" aria-hidden="true"></i></a>
+            </div>
         </div>
     </nav>
 
-    <div class="mt-5" id="content1">
-        <div class="content-copy">
-            <h1>Ein Teil fehlt. <br>Deine Lösung beginnt hier.</h1>
-            <br>
-            <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner <br>
-             3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil <br> direkt im Shop.</p>
-        </div>
-         <img src="img/bspbild2.jpeg" alt="Beispielbild" class="img-fluid mt-4" id="bspbild2">
-    </div>
-
-    <div id="content2">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Dein Teil. Individuell gefertigt.</h2>
-                <p>Du hast eine 3D-Datei und suchst nach einer individuellen Lösung? Wir erstellen aus deiner Datei ein maßgeschneidertes Bauteil, das perfekt zu deinem Projekt passt.</p>
-                <a href="#kontakt" class="btn btn-outline-primary" id="druckauftrag-btn">Zum Druckauftrag</a>
+    <main class="chat-page" aria-label="Nachrichten">
+        <aside class="chat-sidebar">
+            <div class="chat-sidebar-header">
+                <h1>Nachrichten</h1>
+                <button class="chat-icon-button" type="button" aria-label="Neue Nachricht"><i class="bi bi-pencil-square" aria-hidden="true"></i></button>
             </div>
-        </div>
-
-    </div>
-
-    <div id="content3">
-        <div class="content3-heading">
-            <div>
-                <h2>Vier Schritte. Ein klarer Ablauf!</h2>
+            <label class="chat-search" for="chat-search-input">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <input id="chat-search-input" type="search" placeholder="Suchen..." autocomplete="off">
+            </label>
+            <div class="chat-tabs" role="tablist" aria-label="Nachrichtenfilter">
+                <button class="chat-tab active" type="button" role="tab" aria-selected="true">Chats</button>
+                <button class="chat-tab" type="button" role="tab" aria-selected="false">Anfragen</button>
             </div>
-           
-        </div>
+            <div class="chat-list" id="chat-list">
+                <button class="chat-contact active" type="button" data-name="Print3d Support" data-chat="support">
+                    <span class="chat-avatar">P3</span>
+                    <span class="chat-contact-copy"><strong>Print3d Support</strong><span>Wie können wir helfen?</span></span>
+                </button>
+                <button class="chat-contact" type="button" data-name="Max Mustermann" data-chat="max">
+                    <span class="chat-avatar">MM</span>
+                    <span class="chat-contact-copy"><strong>Max Mustermann</strong><span>Deine Anfrage ist angekommen.</span></span>
+                </button>
+                <button class="chat-contact" type="button" data-name="Julia Weber" data-chat="julia">
+                    <span class="chat-avatar">JW</span>
+                    <span class="chat-contact-copy"><strong>Julia Weber</strong><span>Aktiv vor 10 Min.</span></span>
+                </button>
+            </div>
+        </aside>
 
-        <div class="process-cards">
-            <article class="process-card">
-                <span class="process-number">01</span>
-                <h3>Datei &amp; Idee senden</h3>
-                <p>3D-Modell, Stückzahl und Einsatzzweck angeben. Maße und besondere Anforderungen ergänzen.</p>
-            </article>
-            <article class="process-card">
-                <span class="process-number">02</span>
-                <h3>Machbarkeit klären</h3>
-                <p>Geometrie, Material und Druckausrichtung werden geprüft. Offene Fragen klären wir mit dir.</p>
-            </article>
-            <article class="process-card">
-                <span class="process-number">03</span>
-                <h3>Angebot freigeben</h3>
-                <p>Du erhältst einen Vorschlag zu Ausführung, Preis und Zeitrahmen. Erst nach Freigabe geht es weiter.</p>
-            </article>
-            <article class="process-card">
-                <span class="process-number">04</span>
-                <h3>Druck &amp; Übergabe</h3>
-                <p>Das Bauteil wird gefertigt und auf die vereinbarten Anforderungen geprüft. Die Übergabe wird abgestimmt.</p>
-            </article>
-        </div>
-    </div>
-
-    <section id="content4">
-        <div class="content4-intro">
-            
-            <h2>Starke Ergebnisse starten<br>mit klaren<br>Anforderungen.</h2>
-            <p>Damit dein Bauteil zuverlässig funktioniert, klären wir die wichtigsten Details bereits vor der Angebotserstellung.</p>
-        </div>
-        <div class="content4-checks">
-            <article class="check-item">
-                <span class="check-icon" aria-hidden="true"><i class="bi bi-check2"></i></span>
-                <div>
-                    <h3>Form &amp; Maßhaltigkeit</h3>
-                    <p>Wandstärken, Überhänge und Toleranzen wirken sich auf das Ergebnis aus. Besondere Maße bitte hervorheben.</p>
+        <section class="chat-main">
+            <header class="chat-main-header">
+                <div class="chat-main-user">
+                    <span class="chat-avatar" id="chat-main-avatar">P3</span>
+                    <div><strong id="chat-main-name">Print3d Support</strong><span id="chat-main-status">Online</span></div>
                 </div>
-            </article>
-            <article class="check-item">
-                <span class="check-icon" aria-hidden="true"><i class="bi bi-check2"></i></span>
-                <div>
-                    <h3>Verwendung &amp; Belastung</h3>
-                    <p>Teile können Wärme, Feuchtigkeit oder Kräften ausgesetzt sein. Beschreibe deshalb den geplanten Einsatz möglichst genau.</p>
-                </div>
-            </article>
-            <article class="check-item">
-                <span class="check-icon" aria-hidden="true"><i class="bi bi-check2"></i></span>
-                <div>
-                    <h3>Finish &amp; Ausführung</h3>
-                    <p>Schichtlinien und Nachbearbeitung beeinflussen die Oberfläche. Wir wählen Ausrichtung und Finish passend zu deinem Projekt.</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-  <div class="container" id="content5">
-  <div class="row align-items-start">
-
-    <!-- Linke Seite: Text -->
-    <div class="col-12 col-md-6">
-      <h2>Du möchtest ein Bauteil drucken?</h2>
-      <p>Schicke uns ein Bild oder eine Skizze deines Wunsches und wir machen es möglich.</p>
-      <p>Füll das Formular auf der rechten Seite aus, oder schreibe uns direkt auf
-         <a href="mailto:info@print3d.at">info@print3d.at</a></p>
-
-         <div class="bild3">
-            <img src="img/bspbild3.jpg" alt="Beispielbild3" class="img-fluid mt-4" id="bspbild3">
-        </div>
-    </div>
-           <div class="col-12 col-md-6">
-             <form class="row g-3 needs-validation" novalidate id="formular">
-               <div class="mb-3">
-                <label for="formFile" class="form-label">Gib deine Datei an</label>
-                <input class="form-control" type="file" id="formFile" aria-describedby="inputGroupPrepend2" required>
-                </div>
-              <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="vorname" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="vorname" placeholder="Max" aria-describedby="inputGroupPrepend2" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="nachname" class="form-label">Nachname</label>
-                    <input type="text" class="form-control" id="nachname" placeholder="Mustermann" aria-describedby="inputGroupPrepend2" required>
-                </div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Telefonnummer</label>
-                    <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="+43 123 456789" aria-describedby="inputGroupPrepend2" required>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Was hast du für ein Wunschteil?</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                <div class="col-12">
-                    <button class="btnsubmit" type="submit">Submit form</button>
-                </div>  
+                <button class="chat-icon-button" type="button" aria-label="Weitere Optionen"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+            </header>
+            <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+            <form class="chat-composer" id="chat-form">
+                <button class="chat-icon-button" type="button" aria-label="Datei anhängen"><i class="bi bi-paperclip" aria-hidden="true"></i></button>
+                <input id="chat-input" type="text" placeholder="Nachricht schreiben..." autocomplete="off" required>
+                <button class="chat-send" type="submit" aria-label="Nachricht senden"><i class="bi bi-send-fill" aria-hidden="true"></i></button>
             </form>
-        </div>
-    </div>
-  </div>
-        
-     <footer class="site-footer">
-        <div class="site-footer-main">
-            <div class="site-footer-brand">
-                <a class="site-footer-logo" href="index.php#startseite">Print3d</a>
-                <p>Individuelle 3D-Druckteile für Ideen, Projekte und Lösungen, die passen.</p>
-                <div class="site-footer-socials" aria-label="Social Media">
-                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-                </div>
-            </div>
+        </section>
+    </main>
 
-            <div class="site-footer-column">
-                <h2>Plattform</h2>
-                <a href="index.php#startseite">Startseite</a>
-                <a href="leistungen.php">Leistungen</a>
-                <a href="shop.php">Shop</a>
-            </div>
+    <script>
+        const chatForm = document.querySelector("#chat-form");
+        const chatInput = document.querySelector("#chat-input");
+        const chatMessages = document.querySelector("#chat-messages");
+        const searchInput = document.querySelector("#chat-search-input");
+        const chatMainAvatar = document.querySelector("#chat-main-avatar");
+        const chatMainName = document.querySelector("#chat-main-name");
+        const chatMainStatus = document.querySelector("#chat-main-status");
 
-            <div class="site-footer-column">
-                <h2>Support</h2>
-                <a href="kontakt.php">Kontakt</a>
-                <a href="mailto:info@print3d.at">info@print3d.at</a>
-                <a href="index.php#content5">Anfrage senden</a>
-            </div>
+        const chats = {
+            support: {
+                name: "Print3d Support",
+                avatar: "P3",
+                status: "Online",
+                messages: [
+                    ["Hallo! Schön, dass du da bist. Wie können wir dir bei deinem 3D-Druck-Projekt helfen?", false, "10:24"],
+                    ["Ich möchte gerne ein individuelles Bauteil anfragen.", true, "10:26"],
+                    ["Sehr gerne! Schick uns einfach deine Idee, Maße oder eine Datei. Wir melden uns so schnell wie möglich mit den nächsten Schritten.", false, "10:27"]
+                ]
+            },
+            max: {
+                name: "Max Mustermann",
+                avatar: "MM",
+                status: "Zuletzt online vor 2 Std.",
+                messages: [
+                    ["Hallo, ich habe eine Frage zu meiner Anfrage.", false, "09:42"],
+                    ["Gerne, worum geht es genau?", true, "09:45"]
+                ]
+            },
+            julia: {
+                name: "Julia Weber",
+                avatar: "JW",
+                status: "Online",
+                messages: [
+                    ["Ist mein Bauteil schon in Bearbeitung?", false, "Gestern"],
+                    ["Wir prüfen die Datei gerade und melden uns gleich bei dir.", true, "Gestern"]
+                ]
+            }
+        };
 
-            <div class="site-footer-column">
-                <h2>Rechtliches</h2>
-                <a href="#impressum">Impressum</a>
-                <a href="#datenschutz">Datenschutz</a>
-            </div>
-        </div>
+        let activeChatId = "support";
 
-        <div class="site-footer-bottom">
-            <span>&copy; 2026 Print3d. Alle Rechte vorbehalten.</span>
-        </div>
-    </footer>
+        function renderChat(chatId) {
+            const chat = chats[chatId];
+            activeChatId = chatId;
+            chatMainAvatar.textContent = chat.avatar;
+            chatMainName.textContent = chat.name;
+            chatMainStatus.textContent = chat.status;
+            chatMessages.replaceChildren();
 
+            const date = document.createElement("span");
+            date.className = "chat-date";
+            date.textContent = "Heute";
+            chatMessages.append(date);
+
+            chat.messages.forEach(([text, own, time]) => {
+                const bubble = document.createElement("div");
+                bubble.className = `chat-bubble${own ? " own" : ""}`;
+                bubble.append(document.createTextNode(text));
+
+                const timeElement = document.createElement("span");
+                timeElement.className = "chat-time";
+                timeElement.textContent = time;
+                bubble.append(timeElement);
+                chatMessages.append(bubble);
+            });
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const message = chatInput.value.trim();
+
+            if (!message) {
+                return;
+            }
+
+            const bubble = document.createElement("div");
+            bubble.className = "chat-bubble own";
+            bubble.append(document.createTextNode(message));
+
+            const time = document.createElement("span");
+            time.className = "chat-time";
+            time.textContent = new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+            bubble.append(time);
+            chatMessages.append(bubble);
+            chats[activeChatId].messages.push([message, true, time.textContent]);
+            chatInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+        searchInput.addEventListener("input", () => {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            document.querySelectorAll(".chat-contact").forEach((contact) => {
+                contact.hidden = !contact.dataset.name.toLowerCase().includes(searchTerm);
+            });
+        });
+
+        document.querySelectorAll(".chat-contact").forEach((contact) => {
+            contact.addEventListener("click", () => {
+                document.querySelector(".chat-contact.active")?.classList.remove("active");
+                contact.classList.add("active");
+                renderChat(contact.dataset.chat);
+            });
+        });
+
+        document.querySelectorAll(".chat-tab").forEach((tab) => {
+            tab.addEventListener("click", () => {
+                document.querySelector(".chat-tab.active")?.classList.remove("active");
+                document.querySelector(".chat-tab[aria-selected='true']")?.setAttribute("aria-selected", "false");
+                tab.classList.add("active");
+                tab.setAttribute("aria-selected", "true");
+            });
+        });
+
+        renderChat(activeChatId);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
 </body>
 </html>

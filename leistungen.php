@@ -52,7 +52,7 @@
         <div class="content-copy">
             <h1>Was bieten wir an?</h1>
             <br>
-            <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner 3D-Datei ein individuelles Bauteil. <br>Oder du findest dein passendes Teil direkt im Shop.</p>
+            <p>Ob Ersatzteil, Halterungen oder erste Prototypen: Wir machen aus deiner Vorstellung ein individuelles Bauteil. <br>Oder du findest dein passendes Teil direkt im Shop.</p>
         </div>
         <div class="leistungen-cards">
             <article class="leistung-card">

@@ -36,8 +36,8 @@
                                 <a class="nav-link" href="#kontakt">Kontakt</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#chat">Chat</a>
-</li>
+                                <a class="nav-link" href="chat.php">Chat</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="nav-actions">

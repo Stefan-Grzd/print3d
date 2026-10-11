@@ -44,9 +44,7 @@
                         <a class="nav-action-link" href="warenkorb.php" aria-label="Warenkorb" title="Warenkorb">
                             <i class="bi bi-cart3" aria-hidden="true"></i>
                         </a>
-                       <li class="nav-item">
-                                <a class="nav-link" href="login.php">Login/Register</a>
-                        </li>
+                        <a class="nav-link nav-login-link" href="login.php">Login</a>
                     </div>
         </div>
     </nav>
@@ -187,6 +185,5 @@
             <span>&copy; 2026 Print3d. Alle Rechte vorbehalten.</span>
         </div>
     </footer>
-  </body>
 </body>
 </html>

@@ -44,14 +44,14 @@
                         <a class="nav-action-link" href="#warenkorb" aria-label="Warenkorb" title="Warenkorb">
                             <i class="bi bi-cart3" aria-hidden="true"></i>
                         </a>
-                        <a class="nav-link nav-login-link active" aria-current="page" href="login.php">Login</a>
+                        <a class="nav-link nav-login-link" href="login.php">Login</a>
                     </div>
         </div>
     </nav>
 
     <div class="mt-5" id="content1">
         <div class="content-copy">
-            <h1>Ein Teil fehlt? Deine Lösung <br> beginnt hier.</h1>
+            <h1>Ein Teil fehlt? Deine Lösung <br> beginnt <span class="hier">hier.</span></h1>
             <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner <br>
              3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil <br> direkt im Shop.</p>
         </div>
@@ -68,9 +68,9 @@
     <div id="content2">
         <div class="row">
             <div class="col-md-6">
-                <h2>Dein Teil. Individuell gefertigt.</h2>
-                <p>Du hast eine 3D-Datei und suchst nach einer individuellen Lösung? Wir erstellen aus deiner Datei ein maßgeschneidertes Bauteil, das perfekt zu deinem Projekt passt.</p>
-                <a href="#kontakt" class="btn btn-outline-primary" id="druckauftrag-btn">Zum Druckauftrag</a>
+                <h2>Ein Interesse. Tausende Lösungen.</h2>
+                <p>Hast du Interesse an 3D gedruckte Teile kannst dich aber nicht entscheiden? Schau in unserem Shop nach und finde das passende Teil für deine Anwendung.</p>
+                <a href="shop.php" class="btn btn-outline-primary" id="druckauftrag-btn">Zum Shop</a>
             </div>
         </div>
 
@@ -182,7 +182,7 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                 <div class="col-12">
-                    <button class="btnsubmit" type="submit">Submit form</button>
+                    <button class="btnsubmit" type="submit">Abschicken</button>
                 </div>  
             </form>
         </div>
@@ -228,6 +228,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
-  </body>
 </body>
 </html>

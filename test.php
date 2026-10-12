@@ -7,6 +7,6 @@ $stmt = $pdo->query("SELECT * FROM kunde");
 $users = $stmt->fetchAll();
 
 foreach ($users as $user) {
-    echo $user['vorname'] . " " . $user['nachname'] . "<br>";
+    echo $user['vorname'] . " " . $user['nachname'] . " " . $user['email'] . " " . $user['straße'] . " " . $user['plz'] . " " . $user['ort'];
 }
 ?>

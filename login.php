@@ -1,3 +1,46 @@
+<?php
+session_start();
+require_once 'db.php';
+
+$loginError = '';
+$email = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($email !== '' && $password !== '') {
+        $stmt = $pdo->prepare('SELECT * FROM kunde WHERE email = :email LIMIT 1');
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch();
+
+        $passwordIsValid = $user !== false
+            && isset($user['passwort'])
+            && (
+                password_verify($password, $user['passwort'])
+                || hash_equals((string) $user['passwort'], $password)
+            );
+
+        if ($passwordIsValid) {
+            if (!password_verify($password, $user['passwort'])) {
+                $newPasswordHash = password_hash($password, PASSWORD_DEFAULT);
+                $updateStmt = $pdo->prepare('UPDATE kunde SET passwort = :passwort WHERE k_id = :id');
+                $updateStmt->execute([
+                    'passwort' => $newPasswordHash,
+                    'id' => $user['k_id'],
+                ]);
+            }
+
+            unset($user['passwort']);
+            $_SESSION['user'] = $user;
+            header('Location: index.php');
+            exit;
+        }
+    }
+
+    $loginError = 'E-Mail oder Passwort falsch.';
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -62,13 +105,16 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form method="post" action="login.php">
                 <h1>Anmelden</h1>
                 <span>Melde dich mit deiner E-Mail-Adresse an, um auf alle Funktionen von Print3d zuzugreifen.</span>
-                <input type="email" placeholder="E-Mail" aria-label="E-Mail">
-                <input type="password" placeholder="Passwort" aria-label="Passwort">
+                <input type="email" name="email" placeholder="E-Mail" aria-label="E-Mail" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="password" name="password" placeholder="Passwort" aria-label="Passwort" required>
                 <a href="#">Passwort vergessen?</a>
-                <button type="button">Anmelden</button>
+                <button type="submit">Anmelden</button>
+                <?php if ($loginError !== ''): ?>
+                    <p class="text-danger mt-2 mb-0" role="alert"><?= htmlspecialchars($loginError, ENT_QUOTES, 'UTF-8') ?></p>
+                <?php endif; ?>
             </form>
         </div>
         <div class="toggle-container">

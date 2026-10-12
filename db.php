@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
+$host = '194.56.190.69:3306';
 $dbname = 'print3d';
-$username = 'root';
-$password = '';
+$username = 'densteftom26';
+$password = '26-digbiz-miba';
 
 try {
     // DSN (Data Source Name) erstellen

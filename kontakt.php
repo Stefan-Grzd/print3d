@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#startseite" id="logo">
+            <a class="navbar-brand" href="index.php" id="logo">
              <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
   
                 </a>

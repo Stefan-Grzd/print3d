@@ -1285,9 +1285,9 @@ span.hier {
 
 #container .sign-up form h1,
 #container .sign-up form span,
-#container .sign-up form input:nth-of-type(3),
-#container .sign-up form input:nth-of-type(6),
-#container .sign-up form input:nth-of-type(7),
+#container .sign-up form .field-street,
+#container .sign-up form .field-email,
+#container .sign-up form .field-password,
 #container .sign-up form button {
     grid-column: 1 / -1;
 }

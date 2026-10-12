@@ -3,42 +3,92 @@ session_start();
 require_once 'db.php';
 
 $loginError = '';
+$registerError = '';
+$registerSuccess = '';
 $email = '';
+$registration = [
+    'vorname' => '',
+    'nachname' => '',
+    'strasse' => '',
+    'plz' => '',
+    'ort' => '',
+    'email' => '',
+];
+$showRegistration = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-
-    if ($email !== '' && $password !== '') {
-        $stmt = $pdo->prepare('SELECT * FROM kunde WHERE email = :email LIMIT 1');
-        $stmt->execute(['email' => $email]);
-        $user = $stmt->fetch();
-
-        $passwordIsValid = $user !== false
-            && isset($user['passwort'])
-            && (
-                password_verify($password, $user['passwort'])
-                || hash_equals((string) $user['passwort'], $password)
-            );
-
-        if ($passwordIsValid) {
-            if (!password_verify($password, $user['passwort'])) {
-                $newPasswordHash = password_hash($password, PASSWORD_DEFAULT);
-                $updateStmt = $pdo->prepare('UPDATE kunde SET passwort = :passwort WHERE k_id = :id');
-                $updateStmt->execute([
-                    'passwort' => $newPasswordHash,
-                    'id' => $user['k_id'],
-                ]);
-            }
-
-            unset($user['passwort']);
-            $_SESSION['user'] = $user;
-            header('Location: index.php');
-            exit;
+    if (($_POST['form_type'] ?? '') === 'register') {
+        $showRegistration = true;
+        foreach ($registration as $field => $value) {
+            $registration[$field] = trim($_POST[$field] ?? '');
         }
-    }
+        $registrationPassword = $_POST['register_password'] ?? '';
 
-    $loginError = 'E-Mail oder Passwort falsch.';
+        if (in_array('', $registration, true) || $registrationPassword === '') {
+            $registerError = 'Bitte fülle alle Felder aus.';
+        } elseif (!filter_var($registration['email'], FILTER_VALIDATE_EMAIL)) {
+            $registerError = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+        } elseif (!ctype_digit($registration['plz'])) {
+            $registerError = 'Die PLZ darf nur Zahlen enthalten.';
+        } else {
+            $emailStmt = $pdo->prepare('SELECT k_id FROM kunde WHERE email = :email LIMIT 1');
+            $emailStmt->execute(['email' => $registration['email']]);
+
+            if ($emailStmt->fetch() !== false) {
+                $registerError = 'Diese E-Mail-Adresse ist bereits registriert.';
+            } else {
+                $insertStmt = $pdo->prepare(
+                    'INSERT INTO kunde (vorname, nachname, email, passwort, straße, ort, plz)
+                     VALUES (:vorname, :nachname, :email, :passwort, :strasse, :ort, :plz)'
+                );
+                $insertStmt->execute([
+                    'vorname' => $registration['vorname'],
+                    'nachname' => $registration['nachname'],
+                    'email' => $registration['email'],
+                    'passwort' => password_hash($registrationPassword, PASSWORD_DEFAULT),
+                    'strasse' => $registration['strasse'],
+                    'ort' => $registration['ort'],
+                    'plz' => (int) $registration['plz'],
+                ]);
+                $registerSuccess = 'Registrierung erfolgreich. Du kannst dich jetzt anmelden.';
+                $registration = array_fill_keys(array_keys($registration), '');
+            }
+        }
+    } else {
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
+
+        if ($email !== '' && $password !== '') {
+            $stmt = $pdo->prepare('SELECT * FROM kunde WHERE email = :email LIMIT 1');
+            $stmt->execute(['email' => $email]);
+            $user = $stmt->fetch();
+
+            $passwordIsValid = $user !== false
+                && isset($user['passwort'])
+                && (
+                    password_verify($password, $user['passwort'])
+                    || hash_equals((string) $user['passwort'], $password)
+                );
+
+            if ($passwordIsValid) {
+                if (!password_verify($password, $user['passwort'])) {
+                    $newPasswordHash = password_hash($password, PASSWORD_DEFAULT);
+                    $updateStmt = $pdo->prepare('UPDATE kunde SET passwort = :passwort WHERE k_id = :id');
+                    $updateStmt->execute([
+                        'passwort' => $newPasswordHash,
+                        'id' => $user['k_id'],
+                    ]);
+                }
+
+                unset($user['passwort']);
+                $_SESSION['user'] = $user;
+                header('Location: index.php');
+                exit;
+            }
+        }
+
+        $loginError = 'E-Mail oder Passwort falsch.';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -92,19 +142,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 
-        <div class="container" id="container">
+        <div class="container<?= $showRegistration ? ' active' : '' ?>" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form method="post" action="login.php">
+                <input type="hidden" name="form_type" value="register">
                 <h1>Konto erstellen</h1>
                 <span>Erstelle ein Konto, um auf alle Funktionen von Print3d zuzugreifen.</span>
-                <input type="text" placeholder="Name" aria-label="Name">
-                <input type="text" placeholder="Nachname" aria-label="Nachname">
-                <input type="text" placeholder="Straße" aria-label="Straße">
-                <input type="text" placeholder="PLZ" aria-label="PLZ">
-                <input type="text" placeholder="Ort" aria-label="Ort">
-                <input type="email"placeholder="E-Mail" aria-label="E-Mail">
-                <input type="password" placeholder="Passwort" aria-label="Passwort">
-                <button type="button">Registrieren</button>
+                <input type="text" name="vorname" placeholder="Name" aria-label="Name" value="<?= htmlspecialchars($registration['vorname'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="text" name="nachname" placeholder="Nachname" aria-label="Nachname" value="<?= htmlspecialchars($registration['nachname'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="text" name="strasse" placeholder="Straße" aria-label="Straße" value="<?= htmlspecialchars($registration['strasse'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="text" name="plz" placeholder="PLZ" aria-label="PLZ" value="<?= htmlspecialchars($registration['plz'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="text" name="ort" placeholder="Ort" aria-label="Ort" value="<?= htmlspecialchars($registration['ort'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="email" name="email" placeholder="E-Mail" aria-label="E-Mail" value="<?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="password" name="register_password" placeholder="Passwort" aria-label="Passwort" required>
+                <button type="submit">Registrieren</button>
+                <?php if ($registerError !== ''): ?>
+                    <p class="text-danger mt-2 mb-0" role="alert"><?= htmlspecialchars($registerError, ENT_QUOTES, 'UTF-8') ?></p>
+                <?php elseif ($registerSuccess !== ''): ?>
+                    <p class="text-success mt-2 mb-0" role="status"><?= htmlspecialchars($registerSuccess, ENT_QUOTES, 'UTF-8') ?></p>
+                <?php endif; ?>
             </form>
         </div>
         <div class="form-container sign-in">

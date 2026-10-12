@@ -342,7 +342,7 @@ $users = $stmt->fetchAll();
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php#startseite" id="logo">
+            <a class="navbar-brand" href="index.php" id="logo">
                 <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navigation öffnen">

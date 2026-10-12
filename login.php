@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#startseite" id="logo">
+            <a class="navbar-brand" href="index.php" id="logo">
              <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
   
                 </a>
@@ -99,7 +99,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>Erstelle ein Konto, um auf alle Funktionen von Print3d zuzugreifen.</span>
                 <input type="text" placeholder="Name" aria-label="Name">
                 <input type="text" placeholder="Nachname" aria-label="Nachname">
-                <input type="email" placeholder="E-Mail" aria-label="E-Mail">
+                <input type="text" placeholder="Straße" aria-label="Straße">
+                <input type="text" placeholder="PLZ" aria-label="PLZ">
+                <input type="text" placeholder="Ort" aria-label="Ort">
+                <input type="email"placeholder="E-Mail" aria-label="E-Mail">
                 <input type="password" placeholder="Passwort" aria-label="Passwort">
                 <button type="button">Registrieren</button>
             </form>

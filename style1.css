@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap");
+
 /* Global */
 * {
     box-sizing: border-box;
@@ -18,12 +20,22 @@ body {
    
 }
 
+h1 {
+    font-family: "Poppins", sans-serif;
+}
+
+p {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+}
+
 /* Navbar */
 #nav {
     background: #ffffff;
     border-radius: 30px;
     padding: 0.25rem 1.25rem;
     margin: 25px clamp(1rem, 8vw, 120px);
+    font-family: "Poppins", sans-serif;
 }
 
 #logo {
@@ -237,7 +249,7 @@ span.hier {
 
 #content1 p {
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.10rem;
     letter-spacing: 0.015em;
     line-height: 1.5;
     color: #dfd7e7;
@@ -661,7 +673,7 @@ span.hier {
     margin: 0;
     color: #ffffff;
     font-size: 3.7rem;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     line-height: 1.05;
 }
@@ -670,7 +682,8 @@ span.hier {
     max-width: 30rem;
     margin: 1rem 0 0;
     color: #dfd7e7;
-    font-family: "Inter", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.55;
     padding: 0 1rem 0 0;
@@ -750,6 +763,180 @@ span.hier {
 
     .leistungen-cards {
         grid-template-columns: 1fr;
+    }
+}
+#leistungen-content3 {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 6rem 7.5rem 7rem;
+    overflow: hidden;
+    background:
+        linear-gradient(115deg, rgba(25, 9, 61, 0.96), rgba(130, 22, 164, 0.84)),
+        url("img/bspbild3.jpg") center / cover;
+    color: #ffffff;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+#leistungen-content3::before {
+    position: absolute;
+    top: -10rem;
+    right: -6rem;
+    width: 28rem;
+    height: 28rem;
+    content: "";
+    background: rgba(245, 208, 254, 0.16);
+    border-radius: 50%;
+    filter: blur(0.2rem);
+    pointer-events: none;
+}
+
+#leistungen-content3 h2 {
+    max-width: 40rem;
+    margin: 0 0 1rem;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.08;
+}
+
+#leistungen-content3 .content-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 58rem;
+}
+
+#leistungen-content3 .content-copy p {
+    max-width: 58rem;
+    margin: 0;
+    color: #f5d0fe;
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
+.leistung-carousel {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1.5rem 3rem rgba(22, 13, 45, 0.28);
+    backdrop-filter: blur(0.35rem);
+}
+
+.leistung-carousel .carousel-inner {
+    min-height: 20rem;
+}
+
+.leistung-slide {
+    min-height: 20rem;
+    padding: 3rem clamp(2rem, 6vw, 6rem);
+    background-position: center;
+    background-size: cover;
+}
+
+.leistung-slide--custom {
+    background:
+        linear-gradient(105deg, rgba(91, 33, 182, 0.98), rgba(192, 38, 211, 0.76)),
+        url("img/bspbild3.jpg") center / cover;
+}
+
+.leistung-slide--materials {
+    background:
+        linear-gradient(105deg, rgba(20, 101, 116, 0.96), rgba(37, 180, 140, 0.78)),
+        url("img/bspbild2.jpeg") center / cover;
+}
+
+.leistung-slide--price {
+    background:
+        linear-gradient(105deg, rgba(160, 65, 21, 0.96), rgba(245, 158, 11, 0.78)),
+        url("img/bspbild1.jpeg") center / cover;
+}
+
+.leistung-slide-content {
+    max-width: 42rem;
+}
+
+.leistung-slide h3 {
+    margin: 0 0 0.8rem;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    font-weight: 700;
+}
+
+.leistung-slide p {
+    max-width: 38rem;
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.leistung-slide-link {
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.1rem;
+    color: #5b21b6;
+    background: #ffffff;
+    border-radius: 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leistung-slide-link:hover,
+.leistung-slide-link:focus-visible {
+    color: #5b21b6;
+    box-shadow: 0 0.5rem 1rem rgba(22, 13, 45, 0.24);
+    transform: translateY(-0.15rem);
+}
+
+.leistung-carousel-indicators {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    left: auto;
+    display: flex;
+    gap: 0.45rem;
+}
+
+.leistung-carousel-indicator {
+    width: 2.25rem;
+    height: 0.3rem;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 1rem;
+}
+
+.leistung-carousel-indicator.is-active {
+    background: #fde68a;
+}
+
+@media (max-width: 767.98px) {
+    #leistungen-content3 {
+        gap: 1.75rem;
+        padding: 4rem 1.25rem 4.5rem;
+    }
+
+    #leistungen-content3 .content-copy p {
+        font-size: 0.98rem;
+    }
+
+    .leistung-slide {
+        min-height: 22rem;
+        padding: 2.25rem 1.5rem 3.5rem;
+    }
+
+    .leistung-carousel-indicators {
+        right: 1.5rem;
+        bottom: 1.25rem;
     }
 }
 
@@ -1561,6 +1748,16 @@ span.hier {
     color: #ffffff;
     background: linear-gradient(115deg, #5b21b6, #c026d3);
     border-radius: 1.5rem;
+    
+}
+.shop-hero h1{
+     font-family: "Poppins", sans-serif;
+     font-weight: 600;
+}
+
+.shop-hero p{
+     font-family: "Nunito Sans", sans-serif;
+     font-weight: 400;
 }
 
 .shop-eyebrow {
@@ -1577,7 +1774,7 @@ span.hier {
     margin: 0;
     font-size: clamp(2.2rem, 5vw, 4rem);
     line-height: 1.05;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .shop-hero h1 span {
@@ -1589,7 +1786,8 @@ span.hier {
     margin: 1.25rem 0 1.75rem;
     color: #f5d0fe;
     line-height: 1.6;
-    font-family: "Inter", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
 }
 
 .shop-hero-button {
@@ -1648,7 +1846,7 @@ span.hier {
     font-size: 1.5rem;
 }
 
-.shop-benefits span {
+.shop-benefits span{
     font-size: 0.8rem;
 }
 
@@ -1672,7 +1870,7 @@ span.hier {
     margin: 0;
     color: #f4f5f6;
     font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .shop-tools {
@@ -1934,7 +2132,7 @@ span.hier {
 
 .kontakt h1
 {
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 65px;
     font-weight: 700;
     padding-top: 5rem;
@@ -2003,7 +2201,7 @@ font-weight: 700;
 .contact-layout p,
 .contact-layout a {
     color: #ffffff;
-    font-family: "Inter", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
     font-size: 1rem;
     line-height: 1.5;
     text-decoration: none;

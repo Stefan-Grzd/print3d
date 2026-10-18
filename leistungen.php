@@ -125,7 +125,7 @@
                 <article class="carousel-item active leistung-slide leistung-slide--custom">
                     <div class="leistung-slide-content">
                         <h3>Individuelle Einzelanfertigung</h3>
-                        <p>Wir erstellen für dich maßgeschneiderte 3D-Druckteile, die perfekt auf deine Anforderungen zugeschnitten sind.</p>
+                        <p>Wir erstellen für dich maßgeschneiderte 3D-Druckteile, die perfekt auf deine Anforderungen zugeschnitten sind.</p>                  
                     </div>
                 </article>
                 <article class="carousel-item leistung-slide leistung-slide--materials">

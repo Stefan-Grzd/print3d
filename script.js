@@ -315,3 +315,68 @@ if (shopPage) {
         });
     });
 }
+/*Leisungen Material Popover*/
+
+        const materialTitle = materialPopover.querySelector("h4");
+        const materialInfo = materialPopover.querySelector("p");
+
+        function hideMaterial() {
+            materialPopover.setAttribute("aria-hidden", "true");
+            materialPopover.classList.remove("is-visible");
+        }
+
+        function showMaterial(item) {
+            materialTitle.textContent = item.dataset.material;
+            materialInfo.textContent = item.dataset.info;
+            if (window.matchMedia("(max-width: 767.98px)").matches) {
+                materialPopover.style.top = "";
+            } else {
+                materialPopover.style.top = `${item.offsetTop}px`;
+            }
+            materialPopover.setAttribute("aria-hidden", "false");
+            materialPopover.classList.add("is-visible");
+        }
+
+        materialItems.forEach((item) => {
+            item.addEventListener("mouseenter", () => showMaterial(item));
+            item.addEventListener("mouseleave", hideMaterial);
+            item.addEventListener("focus", () => showMaterial(item));
+            item.addEventListener("click", () => {
+                materialItems.forEach((entry) => entry.classList.remove("active"));
+                item.classList.add("active");
+                showMaterial(item);
+            });
+        });
+
+        if (materialItems.length > 0 && materialPopover) {
+            const materialTitle = materialPopover.querySelector("h4");
+            const materialInfo = materialPopover.querySelector("p");
+
+            function hideMaterial() {
+                materialPopover.setAttribute("aria-hidden", "true");
+                materialPopover.classList.remove("is-visible");
+            }
+
+            function showMaterial(item) {
+                materialTitle.textContent = item.dataset.material;
+                materialInfo.textContent = item.dataset.info;
+                if (window.matchMedia("(max-width: 767.98px)").matches) {
+                    materialPopover.style.top = "";
+                } else {
+                    materialPopover.style.top = `${item.offsetTop}px`;
+                }
+                materialPopover.setAttribute("aria-hidden", "false");
+                materialPopover.classList.add("is-visible");
+            }
+
+            materialItems.forEach((item) => {
+                item.addEventListener("mouseenter", () => showMaterial(item));
+                item.addEventListener("mouseleave", hideMaterial);
+                item.addEventListener("focus", () => showMaterial(item));
+                item.addEventListener("click", () => {
+                    materialItems.forEach((entry) => entry.classList.remove("active"));
+                    item.classList.add("active");
+                    showMaterial(item);
+                });
+            });
+        }

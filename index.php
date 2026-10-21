@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#startseite" id="logo">
+            <a class="navbar-brand" href="index.php" id="logo">
              <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
   
                 </a>
@@ -53,7 +53,7 @@
         <div class="content-copy">
             <h1>Ein Teil fehlt? Deine Lösung <br> beginnt <span class="hier">hier.</span></h1>
             <p>Ob Ersatzteil, Halterung oder erster Prototyp: Wir machen aus deiner <br>
-             3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil <br> direkt im Shop.</p>
+             3D-Datei ein individuelles Bauteil. Oder du findest dein passendes Teil direkt im Shop.</p>
         </div>
          <dotlottie-player
              src="3Ddruck.lottie"
@@ -212,6 +212,7 @@
                 <a href="kontakt.php">Kontakt</a>
                 <a href="mailto:info@print3d.at">info@print3d.at</a>
                 <a href="index.php#content5">Anfrage senden</a>
+                <a href="leistungen.php">FAQ</a>
             </div>
 
             <div class="site-footer-column">

@@ -148,13 +148,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="hidden" name="form_type" value="register">
                 <h1>Konto erstellen</h1>
                 <span>Erstelle ein Konto, um auf alle Funktionen von Print3d zuzugreifen.</span>
-                <input type="text" name="vorname" placeholder="Name" aria-label="Name" value="<?= htmlspecialchars($registration['vorname'], ENT_QUOTES, 'UTF-8') ?>" required>
-                <input type="text" name="nachname" placeholder="Nachname" aria-label="Nachname" value="<?= htmlspecialchars($registration['nachname'], ENT_QUOTES, 'UTF-8') ?>" required>
-                <input type="text" name="strasse" placeholder="Straße" aria-label="Straße" value="<?= htmlspecialchars($registration['strasse'], ENT_QUOTES, 'UTF-8') ?>" required>
-                <input type="text" name="plz" placeholder="PLZ" aria-label="PLZ" value="<?= htmlspecialchars($registration['plz'], ENT_QUOTES, 'UTF-8') ?>" required>
-                <input type="text" name="ort" placeholder="Ort" aria-label="Ort" value="<?= htmlspecialchars($registration['ort'], ENT_QUOTES, 'UTF-8') ?>" required>
-                <input type="email" name="email" placeholder="E-Mail" aria-label="E-Mail" value="<?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8') ?>" required>
-                <input type="password" name="register_password" placeholder="Passwort" aria-label="Passwort" required>
+                <input class="field-name" type="text" name="vorname" placeholder="Name" aria-label="Name" value="<?= htmlspecialchars($registration['vorname'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="field-last-name" type="text" name="nachname" placeholder="Nachname" aria-label="Nachname" value="<?= htmlspecialchars($registration['nachname'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="field-street" type="text" name="strasse" placeholder="Straße" aria-label="Straße" value="<?= htmlspecialchars($registration['strasse'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="field-postcode" type="text" name="plz" placeholder="PLZ" aria-label="PLZ" value="<?= htmlspecialchars($registration['plz'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="field-city" type="text" name="ort" placeholder="Ort" aria-label="Ort" value="<?= htmlspecialchars($registration['ort'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="field-email" type="email" name="email" placeholder="E-Mail" aria-label="E-Mail" value="<?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8') ?>" required>
+                <input class="field-password" type="password" name="register_password" placeholder="Passwort" aria-label="Passwort" required>
                 <button type="submit">Registrieren</button>
                 <?php if ($registerError !== ''): ?>
                     <p class="text-danger mt-2 mb-0" role="alert"><?= htmlspecialchars($registerError, ENT_QUOTES, 'UTF-8') ?></p>

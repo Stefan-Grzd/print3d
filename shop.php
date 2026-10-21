@@ -52,7 +52,6 @@
     <main class="shop-page">
         <section class="shop-hero">
             <div>
-                <span class="shop-eyebrow">Print3d Shop</span>
                 <h1>Praktische Teile für<br><span>deine Ideen.</span></h1>
                 <p>Entdecke ausgewählte 3D-Druckteile für Haushalt, Werkstatt und deine nächsten Projekte.</p>
                 <a class="shop-hero-button" href="#produkte">Produkte entdecken <i class="bi bi-arrow-down"></i></a>
@@ -63,9 +62,9 @@
         </section>
 
         <section class="shop-benefits" aria-label="Vorteile">
-            <div><i class="bi bi-box-seam"></i><span><strong>Versandbereit</strong> sorgfältig verpackt</span></div>
-            <div><i class="bi bi-palette"></i><span><strong>Ausgewählte Materialien</strong> passend zum Einsatz</span></div>
-            <div><i class="bi bi-chat-dots"></i><span><strong>Persönliche Beratung</strong> bei Fragen zum Produkt</span></div>
+            <div><i class="bi bi-box-seam"></i><span><strong>Versandbereit</strong>sorgfältig verpackt</span></div>
+            <div><i class="bi bi-palette"></i><span><strong>Ausgewählte Materialien</strong>passend zum Einsatz</span></div>
+            <div><i class="bi bi-chat-dots"></i><span><strong>Persönliche Beratung</strong>bei Fragen zum Produkt</span></div>
         </section>
 
         <section class="shop-catalog" id="produkte">

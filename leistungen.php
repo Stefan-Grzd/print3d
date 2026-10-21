@@ -114,41 +114,43 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script>
-        const materialItems = document.querySelectorAll("#leistungen-content2 .list-group-item");
-        const materialPopover = document.querySelector("#leistungen-content2 .material-popover");
-        const materialTitle = materialPopover.querySelector("h4");
-        const materialInfo = materialPopover.querySelector("p");
+    <section id="leistungen-content3" aria-labelledby="leistungen-content3-title">
+        <div class="content-copy">
+            <h2 id="leistungen-content3-title">Warum ausgerechnet Print3d?</h2>
+            <p>Wir unterstützen dich bei der Umsetzung deiner Idee, egal ob du bereits eine 3D-Datei hast oder nicht.<br>Wir beraten dich gerne und helfen dir bei der Auswahl des richtigen Materials und der passenden Drucktechnologie.</p>
+        </div>
 
-        function hideMaterial() {
-            materialPopover.setAttribute("aria-hidden", "true");
-            materialPopover.classList.remove("is-visible");
-        }
+        <div id="carouselExampleContent" class="carousel slide leistung-carousel" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover">
+            <div class="carousel-inner">
+                <article class="carousel-item active leistung-slide leistung-slide--custom">
+                    <div class="leistung-slide-content">
+                        <h3>Individuelle Einzelanfertigung</h3>
+                        <p>Wir erstellen für dich maßgeschneiderte 3D-Druckteile, die perfekt auf deine Anforderungen zugeschnitten sind.</p>
+                    </div>
+                </article>
+                <article class="carousel-item leistung-slide leistung-slide--materials">
+                    <div class="leistung-slide-content">
+                        <h3>Verschiedene Materialien</h3>
+                        <p>Wir bieten eine Vielzahl an Materialien an, um die perfekte Lösung für deine Anforderungen zu finden.</p>
+                    </div>
+                </article>
+                <article class="carousel-item leistung-slide leistung-slide--price">
+                    <div class="leistung-slide-content">
+                        <h3>Faire Preise</h3>
+                        <p>Wir bieten faire Preise für unsere 3D-Druckdienste, sodass du beste Qualität zu einem günstigen Preis erhältst.</p>
+                        <a class="leistung-slide-link" href="kontakt.php">Projekt anfragen <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            </div>
+            <div class="leistung-carousel-indicators" aria-label="Carousel-Fortschritt">
+                <span class="leistung-carousel-indicator is-active"></span>
+                <span class="leistung-carousel-indicator"></span>
+                <span class="leistung-carousel-indicator"></span>
+            </div>
+        </div>
+    </section>
 
-        function showMaterial(item) {
-            materialTitle.textContent = item.dataset.material;
-            materialInfo.textContent = item.dataset.info;
-            if (window.matchMedia("(max-width: 767.98px)").matches) {
-                materialPopover.style.top = "";
-            } else {
-                materialPopover.style.top = `${item.offsetTop}px`;
-            }
-            materialPopover.setAttribute("aria-hidden", "false");
-            materialPopover.classList.add("is-visible");
-        }
-
-        materialItems.forEach((item) => {
-            item.addEventListener("mouseenter", () => showMaterial(item));
-            item.addEventListener("mouseleave", hideMaterial);
-            item.addEventListener("focus", () => showMaterial(item));
-            item.addEventListener("click", () => {
-                materialItems.forEach((entry) => entry.classList.remove("active"));
-                item.classList.add("active");
-                showMaterial(item);
-            });
-        });
-    </script>
+    
     <footer class="site-footer">
         <div class="site-footer-main">
             <div class="site-footer-brand">
@@ -180,7 +182,19 @@
                 <a href="#datenschutz">Datenschutz</a>
             </div>
         </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    const leistungCarousel = document.querySelector("#carouselExampleContent");
+    const leistungIndicators = document.querySelectorAll(".leistung-carousel-indicator");
 
+    if (leistungCarousel && leistungIndicators.length > 0) {
+        leistungCarousel.addEventListener("slid.bs.carousel", (event) => {
+            leistungIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle("is-active", index === event.to);
+            });
+        });
+    }
+</script>
         <div class="site-footer-bottom">
             <span>&copy; 2026 Print3d. Alle Rechte vorbehalten.</span>
         </div>

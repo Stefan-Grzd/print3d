@@ -32,10 +32,10 @@ $users = $stmt->fetchAll();
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav nav-pills justify-content-center w-100">
-                    <li class="nav-item"><a class="nav-link" href="index.php#startseite">Startseite</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Startseite</a></li>
                     <li class="nav-item"><a class="nav-link" href="leistungen.php">Leistungen</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.php#shop">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.php#kontakt">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.php">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kontakt.php">Kontakt</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="Chat.php">Chat</a></li>
                 </ul>
             </div>

@@ -380,3 +380,14 @@ if (shopPage) {
                 });
             });
         }
+
+    const leistungCarousel = document.querySelector("#carouselExampleContent");
+    const leistungIndicators = document.querySelectorAll(".leistung-carousel-indicator");
+
+    if (leistungCarousel && leistungIndicators.length > 0) {
+        leistungCarousel.addEventListener("slid.bs.carousel", (event) => {
+            leistungIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle("is-active", index === event.to);
+            });
+        });
+    }

@@ -7,7 +7,7 @@ $stmt = $pdo->query("SELECT * FROM kunde");
 $users = $stmt->fetchAll();
 
 ?>
-    
+<?php session_start(); ?>    
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -340,29 +340,7 @@ $users = $stmt->fetchAll();
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg" id="nav">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php" id="logo">
-                <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navigation öffnen">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav nav-pills justify-content-center w-100">
-                    <li class="nav-item"><a class="nav-link" href="index.php">Startseite</a></li>
-                    <li class="nav-item"><a class="nav-link" href="leistungen.php">Leistungen</a></li>
-                    <li class="nav-item"><a class="nav-link" href="shop.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="kontakt.php">Kontakt</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Chat.php">Chat</a></li>
-                </ul>
-            </div>
-            <div class="nav-actions">
-                <a class="nav-action-link" href="#warenkorb" aria-label="Warenkorb" title="Warenkorb"><i class="bi bi-cart3" aria-hidden="true"></i></a>
-                <a class="nav-action-link" href="#account" aria-label="Mein Account" title="Mein Account"><i class="bi bi-person-circle" aria-hidden="true"></i></a>
-            </div>
-        </div>
-    </nav>
+  <?php include 'header.php'; ?>
 
     <main class="chat-page" aria-label="Nachrichten">
         <aside class="chat-sidebar">

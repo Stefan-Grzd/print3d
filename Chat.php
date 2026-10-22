@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit;
+}
+
 // Verbindungsdatei einbinden
 require_once 'db.php';
 
@@ -7,7 +14,6 @@ $stmt = $pdo->query("SELECT * FROM kunde");
 $users = $stmt->fetchAll();
 
 ?>
-<?php session_start(); ?>    
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -71,124 +77,6 @@ $users = $stmt->fetchAll();
         </section>
     </main>
 
-    <script>
-        const chatForm = document.querySelector("#chat-form");
-        const chatInput = document.querySelector("#chat-input");
-        const chatMessages = document.querySelector("#chat-messages");
-        const searchInput = document.querySelector("#chat-search-input");
-        const chatMainAvatar = document.querySelector("#chat-main-avatar");
-        const chatMainName = document.querySelector("#chat-main-name");
-        const chatMainStatus = document.querySelector("#chat-main-status");
-
-        const chats = {
-            support: {
-                name: "Print3d Support",
-                avatar: "P3",
-                status: "Online",
-                messages: [
-                    ["Hallo! Schön, dass du da bist. Wie können wir dir bei deinem 3D-Druck-Projekt helfen?", false, "10:24"],
-                    ["Ich möchte gerne ein individuelles Bauteil anfragen.", true, "10:26"],
-                    ["Sehr gerne! Schick uns einfach deine Idee, Maße oder eine Datei. Wir melden uns so schnell wie möglich mit den nächsten Schritten.", false, "10:27"]
-                ]
-            },
-            max: {
-                name: "Max Mustermann",
-                avatar: "MM",
-                status: "Zuletzt online vor 2 Std.",
-                messages: [
-                    ["Hallo, ich habe eine Frage zu meiner Anfrage.", false, "09:42"],
-                    ["Gerne, worum geht es genau?", true, "09:45"]
-                ]
-            },
-            julia: {
-                name: "Julia Weber",
-                avatar: "JW",
-                status: "Online",
-                messages: [
-                    ["Ist mein Bauteil schon in Bearbeitung?", false, "Gestern"],
-                    ["Wir prüfen die Datei gerade und melden uns gleich bei dir.", true, "Gestern"]
-                ]
-            }
-        };
-
-        let activeChatId = "support";
-
-        function renderChat(chatId) {
-            const chat = chats[chatId];
-            activeChatId = chatId;
-            chatMainAvatar.textContent = chat.avatar;
-            chatMainName.textContent = chat.name;
-            chatMainStatus.textContent = chat.status;
-            chatMessages.replaceChildren();
-
-            const date = document.createElement("span");
-            date.className = "chat-date";
-            date.textContent = "Heute";
-            chatMessages.append(date);
-
-            chat.messages.forEach(([text, own, time]) => {
-                const bubble = document.createElement("div");
-                bubble.className = `chat-bubble${own ? " own" : ""}`;
-                bubble.append(document.createTextNode(text));
-
-                const timeElement = document.createElement("span");
-                timeElement.className = "chat-time";
-                timeElement.textContent = time;
-                bubble.append(timeElement);
-                chatMessages.append(bubble);
-            });
-
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        chatForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const message = chatInput.value.trim();
-
-            if (!message) {
-                return;
-            }
-
-            const bubble = document.createElement("div");
-            bubble.className = "chat-bubble own";
-            bubble.append(document.createTextNode(message));
-
-            const time = document.createElement("span");
-            time.className = "chat-time";
-            time.textContent = new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
-            bubble.append(time);
-            chatMessages.append(bubble);
-            chats[activeChatId].messages.push([message, true, time.textContent]);
-            chatInput.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        });
-
-        searchInput.addEventListener("input", () => {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-            document.querySelectorAll(".chat-contact").forEach((contact) => {
-                contact.hidden = !contact.dataset.name.toLowerCase().includes(searchTerm);
-            });
-        });
-
-        document.querySelectorAll(".chat-contact").forEach((contact) => {
-            contact.addEventListener("click", () => {
-                document.querySelector(".chat-contact.active")?.classList.remove("active");
-                contact.classList.add("active");
-                renderChat(contact.dataset.chat);
-            });
-        });
-
-        document.querySelectorAll(".chat-tab").forEach((tab) => {
-            tab.addEventListener("click", () => {
-                document.querySelector(".chat-tab.active")?.classList.remove("active");
-                document.querySelector(".chat-tab[aria-selected='true']")?.setAttribute("aria-selected", "false");
-                tab.classList.add("active");
-                tab.setAttribute("aria-selected", "true");
-            });
-        });
-
-        renderChat(activeChatId);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+   <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -45,6 +45,7 @@ p {
 
 #nav .navbar-collapse {
     justify-content: flex-start;
+    margin-left: 25px;
 }
 
 #nav .nav-pills {
@@ -93,10 +94,21 @@ p {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+#nav .chat-nav-icon {
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
 #nav .nav-action-link:hover,
 #nav .nav-action-link:focus {
     color: #ffffff;
     background-color: #d946ef;
+}
+
+#nav .nav-action-link:hover .chat-nav-icon,
+#nav .nav-action-link:focus .chat-nav-icon {
+    filter: brightness(0) invert(1);
 }
 
 #nav .nav-login-link {

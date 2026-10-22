@@ -29,14 +29,17 @@ $userName = $_SESSION['user']['vorname'] ?? 'Nutzer';
                 <li class="nav-item">
                     <a class="nav-link" href="kontakt.php">Kontakt</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="chat.php">Chat</a>
-                </li>
             </ul>
         </div>
 
         <!-- Hier beginnt der NEUE Teil -->
         <div class="nav-actions">
+            <?php if ($isLoggedIn): ?>
+                <a class="nav-action-link" href="Chat.php" aria-label="Chat" title="Chat">
+                    <img class="chat-nav-icon" src="img/chat-icon.svg" alt="Chat" width="28" height="28">
+                </a>
+            <?php endif; ?>
+
             <a class="nav-action-link" href="warenkorb.php" aria-label="Warenkorb" title="Warenkorb">
                 <i class="bi bi-cart3" aria-hidden="true"></i>
             </a>

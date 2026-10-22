@@ -39,10 +39,11 @@ if (materialItems.length > 0 && materialPopover) {
         });
     });
 }
+/* Chat */
 
 const chatPage = document.querySelector(".chat-page");
 
-if (chatPage) {
+if (chatPage && document.querySelector("#chatList")) {
     const userRole = "unternehmen";
     const userId = 5;
     const placeholderAvatar = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none' stroke='%239ca3af' stroke-width='3'%3E%3Cpath d='M52 58v-5a12 12 0 0 0-12-12H24a12 12 0 0 0-12 12v5'/%3E%3Ccircle cx='32' cy='21' r='10'/%3E%3C/svg%3E";
@@ -315,73 +316,7 @@ if (shopPage) {
         });
     });
 }
-/*Leisungen Material Popover*/
-
-        const materialTitle = materialPopover.querySelector("h4");
-        const materialInfo = materialPopover.querySelector("p");
-
-        function hideMaterial() {
-            materialPopover.setAttribute("aria-hidden", "true");
-            materialPopover.classList.remove("is-visible");
-        }
-
-        function showMaterial(item) {
-            materialTitle.textContent = item.dataset.material;
-            materialInfo.textContent = item.dataset.info;
-            if (window.matchMedia("(max-width: 767.98px)").matches) {
-                materialPopover.style.top = "";
-            } else {
-                materialPopover.style.top = `${item.offsetTop}px`;
-            }
-            materialPopover.setAttribute("aria-hidden", "false");
-            materialPopover.classList.add("is-visible");
-        }
-
-        materialItems.forEach((item) => {
-            item.addEventListener("mouseenter", () => showMaterial(item));
-            item.addEventListener("mouseleave", hideMaterial);
-            item.addEventListener("focus", () => showMaterial(item));
-            item.addEventListener("click", () => {
-                materialItems.forEach((entry) => entry.classList.remove("active"));
-                item.classList.add("active");
-                showMaterial(item);
-            });
-        });
-
-        if (materialItems.length > 0 && materialPopover) {
-            const materialTitle = materialPopover.querySelector("h4");
-            const materialInfo = materialPopover.querySelector("p");
-
-            function hideMaterial() {
-                materialPopover.setAttribute("aria-hidden", "true");
-                materialPopover.classList.remove("is-visible");
-            }
-
-            function showMaterial(item) {
-                materialTitle.textContent = item.dataset.material;
-                materialInfo.textContent = item.dataset.info;
-                if (window.matchMedia("(max-width: 767.98px)").matches) {
-                    materialPopover.style.top = "";
-                } else {
-                    materialPopover.style.top = `${item.offsetTop}px`;
-                }
-                materialPopover.setAttribute("aria-hidden", "false");
-                materialPopover.classList.add("is-visible");
-            }
-
-            materialItems.forEach((item) => {
-                item.addEventListener("mouseenter", () => showMaterial(item));
-                item.addEventListener("mouseleave", hideMaterial);
-                item.addEventListener("focus", () => showMaterial(item));
-                item.addEventListener("click", () => {
-                    materialItems.forEach((entry) => entry.classList.remove("active"));
-                    item.classList.add("active");
-                    showMaterial(item);
-                });
-            });
-        }
-
-    const leistungCarousel = document.querySelector("#carouselExampleContent");
+const leistungCarousel = document.querySelector("#carouselExampleContent");
     const leistungIndicators = document.querySelectorAll(".leistung-carousel-indicator");
 
     if (leistungCarousel && leistungIndicators.length > 0) {
@@ -391,3 +326,123 @@ if (shopPage) {
             });
         });
     }
+
+/* Simple chat */
+const simpleChatPage = document.querySelector(".chat-page");
+
+if (simpleChatPage && !document.querySelector("#chatList")) {
+    const chatForm = document.querySelector("#chat-form");
+    const chatInput = document.querySelector("#chat-input");
+    const chatMessages = document.querySelector("#chat-messages");
+    const searchInput = document.querySelector("#chat-search-input");
+    const chatMainAvatar = document.querySelector("#chat-main-avatar");
+    const chatMainName = document.querySelector("#chat-main-name");
+    const chatMainStatus = document.querySelector("#chat-main-status");
+
+    const chats = {
+        support: {
+            name: "Print3d Support",
+            avatar: "P3",
+            status: "Online",
+            messages: [
+                ["Hallo! Schön, dass du da bist. Wie können wir dir bei deinem 3D-Druck-Projekt helfen?", false, "10:24"],
+                ["Ich möchte gerne ein individuelles Bauteil anfragen.", true, "10:26"],
+                ["Sehr gerne! Schick uns einfach deine Idee, Maße oder eine Datei. Wir melden uns so schnell wie möglich mit den nächsten Schritten.", false, "10:27"]
+            ]
+        },
+        max: {
+            name: "Max Mustermann",
+            avatar: "MM",
+            status: "Zuletzt online vor 2 Std.",
+            messages: [
+                ["Hallo, ich habe eine Frage zu meiner Anfrage.", false, "09:42"],
+                ["Gerne, worum geht es genau?", true, "09:45"]
+            ]
+        },
+        julia: {
+            name: "Julia Weber",
+            avatar: "JW",
+            status: "Online",
+            messages: [
+                ["Ist mein Bauteil schon in Bearbeitung?", false, "Gestern"],
+                ["Wir prüfen die Datei gerade und melden uns gleich bei dir.", true, "Gestern"]
+            ]
+        }
+    };
+
+    let activeChatId = "support";
+
+    function renderChat(chatId) {
+        const chat = chats[chatId];
+        activeChatId = chatId;
+        chatMainAvatar.textContent = chat.avatar;
+        chatMainName.textContent = chat.name;
+        chatMainStatus.textContent = chat.status;
+        chatMessages.replaceChildren();
+
+        const date = document.createElement("span");
+        date.className = "chat-date";
+        date.textContent = "Heute";
+        chatMessages.append(date);
+
+        chat.messages.forEach(([text, own, time]) => {
+            const bubble = document.createElement("div");
+            bubble.className = `chat-bubble${own ? " own" : ""}`;
+            bubble.append(document.createTextNode(text));
+
+            const timeElement = document.createElement("span");
+            timeElement.className = "chat-time";
+            timeElement.textContent = time;
+            bubble.append(timeElement);
+            chatMessages.append(bubble);
+        });
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    chatForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        const time = new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+        const bubble = document.createElement("div");
+        bubble.className = "chat-bubble own";
+        bubble.append(document.createTextNode(message));
+
+        const timeElement = document.createElement("span");
+        timeElement.className = "chat-time";
+        timeElement.textContent = time;
+        bubble.append(timeElement);
+        chatMessages.append(bubble);
+        chats[activeChatId].messages.push([message, true, time]);
+        chatInput.value = "";
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+
+    searchInput.addEventListener("input", () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        document.querySelectorAll(".chat-contact").forEach((contact) => {
+            contact.hidden = !contact.dataset.name.toLowerCase().includes(searchTerm);
+        });
+    });
+
+    document.querySelectorAll(".chat-contact").forEach((contact) => {
+        contact.addEventListener("click", () => {
+            document.querySelector(".chat-contact.active")?.classList.remove("active");
+            contact.classList.add("active");
+            renderChat(contact.dataset.chat);
+        });
+    });
+
+    document.querySelectorAll(".chat-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+            document.querySelector(".chat-tab.active")?.classList.remove("active");
+            document.querySelector(".chat-tab[aria-selected='true']")?.setAttribute("aria-selected", "false");
+            tab.classList.add("active");
+            tab.setAttribute("aria-selected", "true");
+        });
+    });
+
+    renderChat(activeChatId);
+}

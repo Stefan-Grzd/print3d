@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 unset($user['passwort']);
                 $_SESSION['user'] = $user;
+                $_SESSION['show_chat_hint'] = true;  
                 header('Location: index.php');
                 exit;
             }

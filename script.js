@@ -256,78 +256,6 @@ if (chatPage && document.querySelector("#chatList")) {
     loadConversations();
 }
 
-/* Login/Register Modal */
-const container = document.getElementById('container');
-if (container) {
-    const registerBtn = document.getElementById('register');
-    const loginBtn = document.getElementById('login');
-
-    registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
-    });
-
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove("active");
-    });
-}
-
-/* Shop */
-const shopPage = document.querySelector(".shop-page");
-
-if (shopPage) {
-    const productSearch = document.querySelector("#productSearch");
-    const productFilter = document.querySelector("#productFilter");
-    const products = document.querySelectorAll(".product-card");
-    const emptyState = document.querySelector("#shopEmpty");
-    const cartMessage = document.querySelector("#cartMessage");
-    const cartTotal = document.querySelector("#cartTotal");
-    let cartCount = 0;
-    let total = 0;
-
-    function filterProducts() {
-        const search = productSearch.value.toLowerCase().trim();
-        const category = productFilter.value;
-        let visibleProducts = 0;
-
-        products.forEach((product) => {
-            const matchesSearch = product.dataset.name.toLowerCase().includes(search);
-            const matchesCategory = category === "all" || product.dataset.category === category;
-            const isVisible = matchesSearch && matchesCategory;
-            product.hidden = !isVisible;
-            if (isVisible) visibleProducts += 1;
-        });
-
-        emptyState.hidden = visibleProducts > 0;
-    }
-
-    productSearch.addEventListener("input", filterProducts);
-    productFilter.addEventListener("change", filterProducts);
-
-    document.querySelectorAll(".add-to-cart").forEach((button) => {
-        button.addEventListener("click", () => {
-            cartCount += 1;
-            total += Number(button.dataset.price);
-            cartMessage.textContent = `${cartCount} ${cartCount === 1 ? "Produkt" : "Produkte"} ausgewählt`;
-            cartTotal.textContent = `${total.toFixed(2).replace(".", ",")} €`;
-            button.textContent = "Hinzugefügt";
-            window.setTimeout(() => {
-                button.textContent = "In den Warenkorb";
-            }, 1200);
-        });
-    });
-}
-const leistungCarousel = document.querySelector("#carouselExampleContent");
-    const leistungIndicators = document.querySelectorAll(".leistung-carousel-indicator");
-
-    if (leistungCarousel && leistungIndicators.length > 0) {
-        leistungCarousel.addEventListener("slid.bs.carousel", (event) => {
-            leistungIndicators.forEach((indicator, index) => {
-                indicator.classList.toggle("is-active", index === event.to);
-            });
-        });
-    }
-
-/* Simple chat */
 const simpleChatPage = document.querySelector(".chat-page");
 
 if (simpleChatPage && !document.querySelector("#chatList")) {
@@ -446,3 +374,76 @@ if (simpleChatPage && !document.querySelector("#chatList")) {
 
     renderChat(activeChatId);
 }
+
+
+/* Login/Register Modal */
+const container = document.getElementById('container');
+if (container) {
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
+
+    registerBtn.addEventListener('click', () => {
+        container.classList.add("active");
+    });
+
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove("active");
+    });
+}
+
+/* Shop */
+const shopPage = document.querySelector(".shop-page");
+
+if (shopPage) {
+    const productSearch = document.querySelector("#productSearch");
+    const productFilter = document.querySelector("#productFilter");
+    const products = document.querySelectorAll(".product-card");
+    const emptyState = document.querySelector("#shopEmpty");
+    const cartMessage = document.querySelector("#cartMessage");
+    const cartTotal = document.querySelector("#cartTotal");
+    let cartCount = 0;
+    let total = 0;
+
+    function filterProducts() {
+        const search = productSearch.value.toLowerCase().trim();
+        const category = productFilter.value;
+        let visibleProducts = 0;
+
+        products.forEach((product) => {
+            const matchesSearch = product.dataset.name.toLowerCase().includes(search);
+            const matchesCategory = category === "all" || product.dataset.category === category;
+            const isVisible = matchesSearch && matchesCategory;
+            product.hidden = !isVisible;
+            if (isVisible) visibleProducts += 1;
+        });
+
+        emptyState.hidden = visibleProducts > 0;
+    }
+
+    productSearch.addEventListener("input", filterProducts);
+    productFilter.addEventListener("change", filterProducts);
+
+    document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", () => {
+            cartCount += 1;
+            total += Number(button.dataset.price);
+            cartMessage.textContent = `${cartCount} ${cartCount === 1 ? "Produkt" : "Produkte"} ausgewählt`;
+            cartTotal.textContent = `${total.toFixed(2).replace(".", ",")} €`;
+            button.textContent = "Hinzugefügt";
+            window.setTimeout(() => {
+                button.textContent = "In den Warenkorb";
+            }, 1200);
+        });
+    });
+}
+const leistungCarousel = document.querySelector("#carouselExampleContent");
+    const leistungIndicators = document.querySelectorAll(".leistung-carousel-indicator");
+
+    if (leistungCarousel && leistungIndicators.length > 0) {
+        leistungCarousel.addEventListener("slid.bs.carousel", (event) => {
+            leistungIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle("is-active", index === event.to);
+            });
+        });
+    }
+

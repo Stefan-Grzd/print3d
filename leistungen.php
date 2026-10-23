@@ -82,7 +82,7 @@
 
     <section id="leistungen-content3" aria-labelledby="leistungen-content3-title">
         <div class="content-copy">
-            <h2 id="leistungen-content3-title">Warum ausgerechnet Print3d?</h2>
+            <h2 id="leistungen-content3-title">Warum ausgerechnet <span class="print3d-highlight">Print3d?</span></h2>
             <p>Wir unterstützen dich bei der Umsetzung deiner Idee, egal ob du bereits eine 3D-Datei hast oder nicht.<br>Wir beraten dich gerne und helfen dir bei der Auswahl des richtigen Materials und der passenden Drucktechnologie.</p>
         </div>
 

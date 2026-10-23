@@ -4,7 +4,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $isLoggedIn = isset($_SESSION['user']);
 $userName = $_SESSION['user']['vorname'] ?? 'Nutzer';
+
+$justLoggedIn = !empty($_SESSION['show_chat_hint']);
+unset($_SESSION['show_chat_hint']);
+
+// Popup nur auf der Startseite und nur für eingeloggte Nutzer ausgeben
+$onIndex = strtolower(basename($_SERVER['PHP_SELF'])) === 'index.php';
+$showChatHint = $isLoggedIn && $onIndex;
 ?>
+
 <nav class="navbar navbar-expand-lg" id="nav">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php" id="logo">
@@ -34,12 +42,20 @@ $userName = $_SESSION['user']['vorname'] ?? 'Nutzer';
 
         <!-- Hier beginnt der NEUE Teil -->
         <div class="nav-actions">
-            <?php if ($isLoggedIn): ?>
-                <a class="nav-action-link" href="Chat.php" aria-label="Chat" title="Chat">
-                    <img class="chat-nav-icon" src="img/chat-icon.svg" alt="Chat" width="28" height="28">
-                </a>
-            <?php endif; ?>
+         <?php if ($isLoggedIn): ?>
+    <div class="chat-wrap">
+        <a class="nav-action-link" id="chatLink" href="Chat.php" aria-label="Chat" title="Chat">
+            <img class="chat-nav-icon" src="img/chat-icon.svg" alt="Chat" width="28" height="28">
+        </a>
 
+        <?php if ($showChatHint): ?>
+            <div class="chat-tip" id="chatTip" role="status">
+                <strong>Neu!</strong>
+                <span>Du kannst jetzt auch mit deinem Account chatten!</span>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
             <a class="nav-action-link" href="warenkorb.php" aria-label="Warenkorb" title="Warenkorb">
                 <i class="bi bi-cart3" aria-hidden="true"></i>
             </a>
@@ -71,3 +87,23 @@ $userName = $_SESSION['user']['vorname'] ?? 'Nutzer';
         <!-- Hier endet der NEUE Teil -->
     </div>
 </nav>
+
+<!-- Chat-Hinweis (Popup) nach Login -->
+<?php if ($showChatHint): ?>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const tip = document.getElementById('chatTip');
+    if (!tip) return;
+
+    const justLoggedIn = <?= $justLoggedIn ? 'true' : 'false' ?>;
+    const nav = performance.getEntriesByType('navigation')[0];
+    const isReload = nav && nav.type === 'reload';
+
+    // nur direkt nach dem Login oder bei einem Refresh anzeigen
+    if (!justLoggedIn && !isReload) return;
+
+    requestAnimationFrame(() => tip.classList.add('show'));
+    setTimeout(() => tip.classList.remove('show'), 6000);
+});
+</script>
+<?php endif; ?>

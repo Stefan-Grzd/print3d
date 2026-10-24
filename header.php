@@ -16,7 +16,8 @@ $showChatHint = $isLoggedIn && $onIndex;
 <nav class="navbar navbar-expand-lg" id="nav">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php" id="logo">
-            <img src="img/print3d-logo-lila-magenta-transparent.svg" alt="Print3d" height="40" class="d-inline-block align-text-top">
+            <img id="themeLogo" src="img/print3d-logo-lila-magenta-transparent.svg"
+                 alt="Print3d" height="40" class="d-inline-block align-text-top">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,9 +57,17 @@ $showChatHint = $isLoggedIn && $onIndex;
         <?php endif; ?>
     </div>
 <?php endif; ?>
-            <a class="nav-action-link" href="warenkorb.php" aria-label="Warenkorb" title="Warenkorb">
+            <button class="nav-action-link cart-trigger" type="button" aria-label="Warenkorb öffnen" title="Warenkorb öffnen" aria-controls="cartDrawer" aria-expanded="false" data-authenticated="<?= $isLoggedIn ? 'true' : 'false' ?>">
                 <i class="bi bi-cart3" aria-hidden="true"></i>
-            </a>
+                <span class="cart-count" id="cartCount" hidden>0</span>
+            </button>
+            <?php if (!$isLoggedIn): ?>
+                <div class="cart-login-popover" id="cartLoginPopover" role="status" aria-live="polite">
+                    <strong>Melde dich an</strong>
+                    <span>um zu bestellen.</span>
+                    <a href="login.php">Zum Login</a>
+                </div>
+            <?php endif; ?>
 
             <?php if ($isLoggedIn): ?>
                 <div class="dropdown">
@@ -87,6 +96,35 @@ $showChatHint = $isLoggedIn && $onIndex;
         <!-- Hier endet der NEUE Teil -->
     </div>
 </nav>
+
+<?php if($isLoggedIn): ?>
+<div class="cart-backdrop" id="cartBackdrop" hidden></div>
+<aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartDrawerTitle" aria-hidden="true">
+    <div class="cart-drawer-header">
+        <div>
+            <span class="cart-eyebrow">Deine Auswahl</span>
+            <h2 id="cartDrawerTitle">Warenkorb</h2>
+            <span class="cart-feedback" id="cartFeedback" role="status" aria-live="polite"></span>
+        </div>
+        <button class="cart-close" id="cartClose" type="button" aria-label="Warenkorb schließen">
+            <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="cart-items" id="cartItems" aria-live="polite"></div>
+    <div class="cart-empty" id="cartEmpty">
+        <i class="bi bi-cart3" aria-hidden="true"></i>
+        <p>Dein Warenkorb ist noch leer.</p>
+        <a href="shop.php">Zum Shop</a>
+    </div>
+    <div class="cart-drawer-footer">
+        <div class="cart-subtotal">
+            <span>Summe</span>
+            <strong id="cartDrawerTotal">0,00 €</strong>
+        </div>
+        <button class="cart-checkout" type="button">Zur Kassa</button>
+    </div>
+</aside>
+<?php endif; ?>
 
 <!-- Chat-Hinweis (Popup) nach Login -->
 <?php if ($showChatHint): ?>

@@ -19,7 +19,7 @@
         <header class="kontakt">
             <h1>Frage gefällig? Zöger nicht, <span class="highlight">kontaktiere uns!</span></h1>
         </header>
-
+ 
         <div class="contact-layout">
             <section class="contact-details" aria-labelledby="contact-details-title">
                 <b class="titel-deko" id="contact-details-title">Unsere Kontaktdaten:</b>

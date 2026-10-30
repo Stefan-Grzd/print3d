@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="site-footer-main">
         <div class="site-footer-brand">
-            <a class="site-footer-logo" href="index.php#startseite">Print3d</a>
+            <a  class="site-footer-logo" href="index.php"><span>Print3d</span></a>
             <p>Individuelle 3D-Druckteile für Ideen, Projekte und Lösungen, die passen.</p>
             <div class="site-footer-socials" aria-label="Social Media">
                 <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
@@ -26,8 +26,8 @@
 
         <div class="site-footer-column">
             <h2>Rechtliches</h2>
-            <a href="#impressum">Impressum</a>
-            <a href="#datenschutz">Datenschutz</a>
+            <a href="impressum.php">Impressum</a>
+            <a href="datenschutz.php">Datenschutz</a>
         </div>
     </div>
 

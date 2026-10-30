@@ -80,6 +80,27 @@
         </div>
     </div>
 
+    <div class="leistungen-content-aufzaehlung">
+     <div class="content-copy">
+        <h2>Unsere Erfolge in Zahlen</h2>
+        <p>Die Zahlen sprechen für sich: Wir haben bereits viele zufriedene Kunden und erfolgreich abgeschlossene Projekte.</p>
+    </div>
+
+        <div class="leistungen-content-aufzaehlung-item">
+            <strong class="leistungen-counter" data-target="50" data-suffix="+">0</strong>
+            <p> Zufriedene Kunden</p>
+        </div>
+        <div class="leistungen-content-aufzaehlung-item">
+            <strong class="leistungen-counter" data-target="300" data-suffix="+">0</strong>
+            <p> Absolvierte Bestellungen</p>
+        </div>
+        <div class="leistungen-content-aufzaehlung-item">
+            <strong class="leistungen-counter" data-target="100" data-suffix="%">0</strong>
+            <p>Faire Preise</p>
+        </div>
+    </div>
+
+
     <section id="leistungen-content3" aria-labelledby="leistungen-content3-title">
         <div class="content-copy">
             <h2 id="leistungen-content3-title">Warum ausgerechnet <span class="print3d-highlight">Print3d?</span></h2>

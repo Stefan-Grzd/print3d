@@ -67,6 +67,59 @@ if (materialItems.length > 0 && materialPopover) {
         });
     });
 }
+
+const leistungenList = document.querySelector(".leistungen-content-aufzaehlung");
+
+if (leistungenList) {
+    const leistungenItems = leistungenList.querySelectorAll(".leistungen-content-aufzaehlung-item");
+    const leistungenCounters = leistungenList.querySelectorAll(".leistungen-counter");
+
+    function animateCounter(counter) {
+        const target = Number.parseInt(counter.dataset.target, 10);
+        const suffix = counter.dataset.suffix || "";
+        const duration = 3500;
+        const start = performance.now();
+
+        if (!Number.isFinite(target)) {
+            counter.textContent = `0${suffix}`;
+            return;
+        }
+
+        function updateCounter(timestamp) {
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = `${Math.floor(easedProgress * target)}${suffix}`;
+
+            if (progress < 1) {
+                window.requestAnimationFrame(updateCounter);
+            }
+        }
+
+        window.requestAnimationFrame(updateCounter);
+    }
+
+    function startCounters() {
+        leistungenItems.forEach((item, index) => {
+            window.setTimeout(() => {
+                item.classList.add("is-visible");
+                animateCounter(leistungenCounters[index]);
+            }, index * 450);
+        });
+    }
+
+    if ("IntersectionObserver" in window) {
+        const leistungenObserver = new IntersectionObserver((entries, observer) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+
+            startCounters();
+            observer.disconnect();
+        }, { threshold: 0.25 });
+
+        leistungenObserver.observe(leistungenList);
+    } else {
+        startCounters();
+    }
+}
 /* Chat */
 
 const chatPage = document.querySelector(".chat-page");

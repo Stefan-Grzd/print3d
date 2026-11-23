@@ -344,6 +344,7 @@ if (simpleChatPage && !document.querySelector("#chatList")) {
     const chatInput = document.querySelector("#chat-input");
     const chatMessages = document.querySelector("#chat-messages");
     const searchInput = document.querySelector("#chat-search-input");
+    const chatMain = document.querySelector("#chat-main");
     const chatMainAvatar = document.querySelector("#chat-main-avatar");
     const chatMainName = document.querySelector("#chat-main-name");
     const chatMainStatus = document.querySelector("#chat-main-status");
@@ -379,11 +380,15 @@ if (simpleChatPage && !document.querySelector("#chatList")) {
         }
     };
 
-    let activeChatId = "support";
+    let activeChatId = null;
 
     function renderChat(chatId) {
         const chat = chats[chatId];
+        if (!chat) return;
+
         activeChatId = chatId;
+        chatMain.hidden = false;
+        chatMain.setAttribute("aria-hidden", "false");
         chatMainAvatar.textContent = chat.avatar;
         chatMainName.textContent = chat.name;
         chatMainStatus.textContent = chat.status;
@@ -453,7 +458,6 @@ if (simpleChatPage && !document.querySelector("#chatList")) {
         });
     });
 
-    renderChat(activeChatId);
 }
 
 

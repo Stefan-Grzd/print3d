@@ -45,7 +45,7 @@ $users = $stmt->fetchAll();
                 <button class="chat-tab" type="button" role="tab" aria-selected="false">Anfragen</button>
             </div>
             <div class="chat-list" id="chat-list">
-                <button class="chat-contact active" type="button" data-name="Print3d Support" data-chat="support">
+                <button class="chat-contact" type="button" data-name="Print3d Support" data-chat="support">
                     <span class="chat-avatar">P3</span>
                     <span class="chat-contact-copy"><strong>Print3d Support</strong><span>Wie können wir helfen?</span></span>
                 </button>
@@ -60,7 +60,7 @@ $users = $stmt->fetchAll();
             </div>
         </aside>
 
-        <section class="chat-main">
+        <section class="chat-main" id="chat-main" hidden aria-hidden="true">
             <header class="chat-main-header">
                 <div class="chat-main-user">
                     <span class="chat-avatar" id="chat-main-avatar">P3</span>

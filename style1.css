@@ -4832,3 +4832,149 @@ span.footer-logo{
         transform: none;
     }
 }
+
+.admin-panel .profile-card:hover {
+    transform: none;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.admin-tabs a {
+    padding: 0.7rem 1.15rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.admin-tabs a.is-active,
+.admin-tabs a:hover,
+.admin-tabs a:focus-visible {
+    color: #4c1d95;
+    background: #ffffff;
+}
+
+.admin-message {
+    margin: 0 0 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.8rem;
+    font-weight: 600;
+}
+
+.admin-message-ok {
+    color: #14532d;
+    background: #dcfce7;
+}
+
+.admin-message-error {
+    color: #7f1d1d;
+    background: #fee2e2;
+}
+
+.admin-toolbar {
+    margin-bottom: 1rem;
+}
+
+.admin-form-card,
+.admin-table-card {
+    margin-bottom: 1.1rem;
+}
+
+.admin-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 1rem;
+    margin-top: 1.2rem;
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    color: #5b4570;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.admin-form-wide,
+.admin-form-actions {
+    grid-column: 1 / -1;
+}
+
+.admin-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.admin-form-actions .profile-primary-action,
+.admin-form-actions .profile-outline-action {
+    border: 0;
+    padding: 0.75rem 1.1rem;
+    cursor: pointer;
+}
+
+.admin-form-actions .profile-outline-action {
+    color: #4c1d95;
+    background: transparent;
+    border: 1px solid #c4b5fd;
+}
+
+.admin-table-wrap {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #2e2040;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 0.8rem 0.7rem;
+    border-bottom: 1px solid #efe4f6;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.admin-table th {
+    color: #76548e;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+}
+
+.admin-actions a,
+.admin-actions button {
+    padding: 0;
+    border: 0;
+    color: #7c3aed;
+    background: transparent;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.admin-actions button {
+    color: #be123c;
+    cursor: pointer;
+}
+
+@media (max-width: 767.98px) {
+    .admin-form {
+        grid-template-columns: 1fr;
+    }
+}

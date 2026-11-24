@@ -2,7 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once 'admin_lib.php';
 $isLoggedIn = isset($_SESSION['user']);
+$isAdmin = isAdminUser($_SESSION['user'] ?? null);
 $userName = $_SESSION['user']['vorname'] ?? 'Nutzer';
 
 $justLoggedIn = !empty($_SESSION['show_chat_hint']);
@@ -85,6 +87,10 @@ $showChatHint = $isLoggedIn && $onIndex;
                         <li><a class="dropdown-item" href="profil.php"><i class="bi bi-person me-2"></i>Mein Profil</a></li>
                         <li><a class="dropdown-item" href="bestellungen.php"><i class="bi bi-bag me-2"></i>Meine Bestellungen</a></li>
                         <li><a class="dropdown-item" href="einstellungen.php"><i class="bi bi-gear me-2"></i>Einstellungen</a></li>
+                        <?php if ($isAdmin): ?>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="admin.php"><i class="bi bi-shield-lock me-2"></i>Admin-Panel</a></li>
+                        <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-right me-2"></i>Abmelden</a></li>
                     </ul>
